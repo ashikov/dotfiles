@@ -1,0 +1,23 @@
+views:
+  v1/nodes:
+    columns:
+      - NAME
+      - STATUS
+      - CONDITIONS
+      - ROLE
+      - TAINTS
+      - VERSION
+      - PODS
+      - CPU
+      - MEM
+      - '%CPU'
+      - '%MEM'
+      - AGE
+    customColumns:
+      CONDITIONS: >-
+        {{ range .status.conditions }}
+          {{ if eq .type "MemoryPressure" }}Mem:{{ .status }}{{ end }}
+          {{ if eq .type "DiskPressure" }} Disk:{{ .status }}{{ end }}
+          {{ if eq .type "PIDPressure" }} PID:{{ .status }}{{ end }}
+          {{ if eq .type "Ready" }} Ready:{{ .status }}{{ end }}
+        {{ end }}
