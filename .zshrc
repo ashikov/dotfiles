@@ -33,7 +33,6 @@ ZSH_THEME="robbyrussell"
 
 # Uncomment the following line if pasting URLs and other text is messed up.
 # DISABLE_MAGIC_FUNCTIONS="true"
-
 # Uncomment the following line to disable colors in ls.
 # DISABLE_LS_COLORS="true"
 
@@ -102,27 +101,47 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-
 alias ll="ls -la ."
 alias c="code ."
 alias reload="source ~/.zshrc"
+
+# k8s aliases
 alias k9sdev="export KUBECONFIG=/mnt/c/Users/r.ashikov/YandexDisk/work/bft/kubeconfig/admin-low-envs/DEV.txt && k9s"
+alias cdev="export KUBECONFIG=/mnt/c/Users/r.ashikov/YandexDisk/work/bft/kubeconfig/admin-low-envs/DEV.txt"
 alias k9stest="export KUBECONFIG=/mnt/c/Users/r.ashikov/YandexDisk/work/bft/kubeconfig/admin-low-envs/TEST.txt && k9s"
+alias ctest="export KUBECONFIG=/mnt/c/Users/r.ashikov/YandexDisk/work/bft/kubeconfig/admin-low-envs/TEST.txt"
 alias k9sint="export KUBECONFIG=/mnt/c/Users/r.ashikov/YandexDisk/work/bft/kubeconfig/admin-low-envs/INT.txt && k9s"
+alias cint="export KUBECONFIG=/mnt/c/Users/r.ashikov/YandexDisk/work/bft/kubeconfig/admin-low-envs/INT.txt"
 alias k9suat="export KUBECONFIG=/mnt/c/Users/r.ashikov/YandexDisk/work/bft/kubeconfig/admin-low-envs/UAT.txt && k9s"
+alias cuat="export KUBECONFIG=/mnt/c/Users/r.ashikov/YandexDisk/work/bft/kubeconfig/admin-low-envs/UAT.txt"
 alias k9sprod="export KUBECONFIG=/mnt/c/Users/r.ashikov/YandexDisk/work/bft/kubeconfig/PROD.txt && k9s"
+alias cprod="export KUBECONFIG=/mnt/c/Users/r.ashikov/YandexDisk/work/bft/kubeconfig/PROD.txt"
 alias k9sbft="export KUBECONFIG=/mnt/c/Users/r.ashikov/YandexDisk/work/bft/kubeconfig/admin-bft-config/admin-bft.txt && k9s"
+alias cbft="export KUBECONFIG=/mnt/c/Users/r.ashikov/YandexDisk/work/bft/kubeconfig/admin-bft-config/admin-bft.txt"
 alias context='[ -n "$KUBECONFIG" ] && echo "KUBECONFIG=$KUBECONFIG" || echo "null"'
+
+# change cwd aliases
 alias cproezd="cd ~/ecp/proezd"
 alias csc="cd ~/ecp/sc"
 alias cmck="cd ~/ecp/mck"
 alias ctsr="cd ~/ecp/tsr"
 alias cpension="~/ecp/pension"
+alias cskl="~/ecp/skl"
+alias cnotes="/mnt/c/Users/r.ashikov/YandexDisk/work/bft/notes-nvim"
 
+alias e="exit"
+alias n="nvim ."
+
+# add fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 export PATH="$PATH:/usr/local/go/bin:/home/ln/go/bin:/home/ln/.asdf/shims"
 
-
 # Created by `pipx` on 2025-04-28 11:40:46
 export PATH="$PATH:/home/ln/.local/bin"
+
+export LANG=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+export LC_CTYPE=en_US.UTF-8
+
+export PATH="$PATH:/snap/bin"
