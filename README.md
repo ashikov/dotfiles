@@ -1,8 +1,12 @@
- # my dotfiles managed with stow
+# dotfiles managed with stow
 
-```zsh
-stow -vv -t ~/.config/nvim nvim
-stow -vv -t ~/ zsh
-stow -vv -t ~/ git
+Requirements:
+
+* GNU Stow
+* Make
+
+```bash
+make stow # install all configs
+make stow-git # install only git config
 ```
 
