@@ -1,4 +1,4 @@
- # my dotfiles manageid with stow
+ # my dotfiles managed with stow
 
 ```zsh
 stow -vv -t ~/.config/nvim nvim
