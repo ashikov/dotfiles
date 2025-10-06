@@ -1,0 +1,7 @@
+[user]
+	email = r.ashikov@bft.ru
+	name = Ашиков Роман Иванович
+[alias]
+	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --color=always
+[core]
+	pager = delta --dark
