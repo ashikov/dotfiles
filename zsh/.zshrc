@@ -106,18 +106,37 @@ alias c="code ."
 alias reload="source ~/.zshrc"
 
 # k8s aliases
-alias k9sdev="export KUBECONFIG=/mnt/c/Users/r.ashikov/YandexDisk/work/bft/kubeconfig/admin-low-envs/DEV.txt && k9s"
-alias cdev="export KUBECONFIG=/mnt/c/Users/r.ashikov/YandexDisk/work/bft/kubeconfig/admin-low-envs/DEV.txt"
-alias k9stest="export KUBECONFIG=/mnt/c/Users/r.ashikov/YandexDisk/work/bft/kubeconfig/admin-low-envs/TEST.txt && k9s"
-alias ctest="export KUBECONFIG=/mnt/c/Users/r.ashikov/YandexDisk/work/bft/kubeconfig/admin-low-envs/TEST.txt"
-alias k9sint="export KUBECONFIG=/mnt/c/Users/r.ashikov/YandexDisk/work/bft/kubeconfig/admin-low-envs/INT.txt && k9s"
-alias cint="export KUBECONFIG=/mnt/c/Users/r.ashikov/YandexDisk/work/bft/kubeconfig/admin-low-envs/INT.txt"
-alias k9suat="export KUBECONFIG=/mnt/c/Users/r.ashikov/YandexDisk/work/bft/kubeconfig/admin-low-envs/UAT.txt && k9s"
-alias cuat="export KUBECONFIG=/mnt/c/Users/r.ashikov/YandexDisk/work/bft/kubeconfig/admin-low-envs/UAT.txt"
-alias k9sprod="export KUBECONFIG=/mnt/c/Users/r.ashikov/YandexDisk/work/bft/kubeconfig/PROD.txt && k9s"
-alias cprod="export KUBECONFIG=/mnt/c/Users/r.ashikov/YandexDisk/work/bft/kubeconfig/PROD.txt"
-alias k9sbft="export KUBECONFIG=/mnt/c/Users/r.ashikov/YandexDisk/work/bft/kubeconfig/admin-bft-config/admin-bft.txt && k9s"
-alias cbft="export KUBECONFIG=/mnt/c/Users/r.ashikov/YandexDisk/work/bft/kubeconfig/admin-bft-config/admin-bft.txt"
+
+# Проверяем, находимся ли мы в окружении Windows Subsystem for Linux (WSL)
+# Переменная $WSL_DISTRO_NAME обычно существует в WSL2/WSL1
+if [[ -n "$WSL_DISTRO_NAME" ]]; then
+    # Мы в WSL (Linux), где путь к диску C: начинается с /mnt/c
+    KUBECONFIG_PREFIX="/mnt/c/Users/r.ashikov/YandexDisk"
+
+# Проверяем, находимся ли мы в стандартной Linux-системе
+elif [[ "$(uname -s)" == "Linux" ]]; then
+    # Мы в чистом Linux (или другом Linux-окружении, где /mnt/c неактуально)
+    KUBECONFIG_PREFIX="/home/ln/Yandex.Disk"
+
+# Если ни одно из условий не выполнилось, то оставляем префикс для Linux
+# (это можно изменить, если вы используете другие ОС)
+else
+    # Значение по умолчанию или для других UNIX-подобных систем
+    KUBECONFIG_PREFIX="/home/ln"
+fi
+
+alias k9sdev="export KUBECONFIG=${KUBECONFIG_PREFIX}/work/bft/kubeconfig/admin-low-envs/DEV.txt && k9s"
+alias cdev="export KUBECONFIG=${KUBECONFIG_PREFIX}/work/bft/kubeconfig/admin-low-envs/DEV.txt"
+alias k9stest="export KUBECONFIG=${KUBECONFIG_PREFIX}/work/bft/kubeconfig/admin-low-envs/TEST.txt && k9s"
+alias ctest="export KUBECONFIG=${KUBECONFIG_PREFIX}/work/bft/kubeconfig/admin-low-envs/TEST.txt"
+alias k9sint="export KUBECONFIG=${KUBECONFIG_PREFIX}/work/bft/kubeconfig/admin-low-envs/INT.txt && k9s"
+alias cint="export KUBECONFIG=${KUBECONFIG_PREFIX}/work/bft/kubeconfig/admin-low-envs/INT.txt"
+alias k9suat="export KUBECONFIG=${KUBECONFIG_PREFIX}/work/bft/kubeconfig/admin-low-envs/UAT.txt && k9s"
+alias cuat="export KUBECONFIG=${KUBECONFIG_PREFIX}/work/bft/kubeconfig/admin-low-envs/UAT.txt"
+alias k9sprod="export KUBECONFIG=${KUBECONFIG_PREFIX}/work/bft/kubeconfig/PROD.txt && k9s"
+alias cprod="export KUBECONFIG=${KUBECONFIG_PREFIX}/work/bft/kubeconfig/PROD.txt"
+alias k9sbft="export KUBECONFIG=${KUBECONFIG_PREFIX}/work/bft/kubeconfig/admin-bft-config/admin-bft.txt && k9s"
+alias cbft="export KUBECONFIG=${KUBECONFIG_PREFIX}/work/bft/kubeconfig/admin-bft-config/admin-bft.txt"
 alias context='[ -n "$KUBECONFIG" ] && echo "KUBECONFIG=$KUBECONFIG" || echo "null"'
 
 # change cwd aliases
@@ -145,3 +164,4 @@ export LC_ALL=en_US.UTF-8
 export LC_CTYPE=en_US.UTF-8
 
 export PATH="$PATH:/snap/bin"
+
