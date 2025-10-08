@@ -154,7 +154,7 @@ alias n="nvim ."
 # add fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-export PATH="$PATH:/usr/local/go/bin:/home/ln/go/bin:/home/ln/.asdf/shims"
+export PATH="/usr/local/go/bin:/home/ln/go/bin:/home/ln/.asdf/shims:$PATH"
 
 # Created by `pipx` on 2025-04-28 11:40:46
 export PATH="$PATH:/home/ln/.local/bin"
@@ -164,4 +164,3 @@ export LC_ALL=en_US.UTF-8
 export LC_CTYPE=en_US.UTF-8
 
 export PATH="$PATH:/snap/bin"
-
