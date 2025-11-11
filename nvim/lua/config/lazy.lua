@@ -51,3 +51,7 @@ require("lazy").setup({
     },
   },
 })
+
+vim.opt.spell = true
+vim.opt.spelllang = { "ru", "en" }
+
