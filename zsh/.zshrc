@@ -166,3 +166,5 @@ export LC_CTYPE=en_US.UTF-8
 
 export PATH="$PATH:/snap/bin"
 
+export K9S_EDITOR="/home/ln/.asdf/shims/nvim"
+
