@@ -152,6 +152,8 @@ alias cnotes="/mnt/c/Users/r.ashikov/YandexDisk/work/bft/notes-nvim"
 alias e="exit"
 alias n="nvim ."
 
+alias glab="GIT_SSL_NO_VERIFY=1 glab"
+
 # add fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
