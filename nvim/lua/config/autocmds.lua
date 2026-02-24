@@ -12,6 +12,11 @@ vim.api.nvim_create_autocmd("BufWritePre", {
     -- Удалить пробелы в конце строк
     vim.cmd([[%s/\s\+$//e]])
 
+    -- Если это markdown — ничего не делаем
+    if vim.bo.filetype == "markdown" then
+      return
+    end
+
     -- Добавить пустую строку в конец, если её нет
     local last_line = vim.fn.getline("$")
     if last_line ~= "" then
