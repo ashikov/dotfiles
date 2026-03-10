@@ -150,7 +150,7 @@ alias cskl="~/ecp/skl"
 alias cnotes="/mnt/c/Users/r.ashikov/YandexDisk/work/bft/notes-nvim"
 
 alias e="exit"
-alias n="nvim ."
+alias n='echo -ne "\e]2;$(basename "$PWD") - nvim\a"; nvim .'
 
 alias glab="GIT_SSL_NO_VERIFY=1 glab"
 

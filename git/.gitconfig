@@ -6,3 +6,5 @@
 [core]
 	pager = delta --dark
 
+[http]
+	sslcainfo = /home/ln/_.bft.download.crt
