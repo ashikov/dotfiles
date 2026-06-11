@@ -138,7 +138,14 @@ alias k9sprod="export KUBECONFIG=${KUBECONFIG_PREFIX}/work/bft/kubeconfig/PROD.t
 alias cprod="export KUBECONFIG=${KUBECONFIG_PREFIX}/work/bft/kubeconfig/PROD.txt"
 alias k9sbft="export KUBECONFIG=${KUBECONFIG_PREFIX}/work/bft/kubeconfig/admin-bft-config/admin-bft.txt && k9s"
 alias cbft="export KUBECONFIG=${KUBECONFIG_PREFIX}/work/bft/kubeconfig/admin-bft-config/admin-bft.txt"
-alias context='[ -n "$KUBECONFIG" ] && echo "KUBECONFIG=$KUBECONFIG" || echo "null"'
+
+context() {
+    if [ -n "$KUBECONFIG" ]; then
+        echo "kubeconfig/${KUBECONFIG#*kubeconfig/}"
+    else
+        echo "null"
+    fi
+}
 
 # change cwd aliases
 alias cproezd="cd ~/ecp/proezd"
@@ -169,4 +176,21 @@ export LC_CTYPE=en_US.UTF-8
 export PATH="$PATH:/snap/bin"
 
 export K9S_EDITOR="/home/ln/.asdf/shims/nvim"
+
+# Add codex to path
+export PATH="$(npm prefix -g)/bin:$PATH"
+
+# opencode
+export PATH=/home/ln/.opencode/bin:$PATH
+
+# Run Codex through Happ proxy from WSL
+codex-happ() {
+  local win_host
+  win_host=$(ip route | awk '/default/ {print $3; exit}')
+
+  HTTP_PROXY="http://${win_host}:10809" \
+  HTTPS_PROXY="http://${win_host}:10809" \
+  ALL_PROXY="socks5://${win_host}:10808" \
+  codex "$@"
+}
 
