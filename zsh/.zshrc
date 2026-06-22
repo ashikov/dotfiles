@@ -139,7 +139,7 @@ alias cprod="export KUBECONFIG=${KUBECONFIG_PREFIX}/work/bft/kubeconfig/PROD.txt
 alias k9sbft="export KUBECONFIG=${KUBECONFIG_PREFIX}/work/bft/kubeconfig/admin-bft-config/admin-bft.txt && k9s"
 alias cbft="export KUBECONFIG=${KUBECONFIG_PREFIX}/work/bft/kubeconfig/admin-bft-config/admin-bft.txt"
 
-context() {
+kcontext() {
     if [ -n "$KUBECONFIG" ]; then
         echo "kubeconfig/${KUBECONFIG#*kubeconfig/}"
     else
@@ -183,14 +183,21 @@ export PATH="$(npm prefix -g)/bin:$PATH"
 # opencode
 export PATH=/home/ln/.opencode/bin:$PATH
 
-# Run Codex through Happ proxy from WSL
 codex-happ() {
-  local win_host
-  win_host=$(ip route | awk '/default/ {print $3; exit}')
+  local proxy_host
 
-  HTTP_PROXY="http://${win_host}:10809" \
-  HTTPS_PROXY="http://${win_host}:10809" \
-  ALL_PROXY="socks5://${win_host}:10808" \
+  # WSL
+  if grep -qi microsoft /proc/version 2>/dev/null; then
+    proxy_host=$(ip route | awk '/default/ {print $3; exit}')
+
+  # Linux Mint (или любой обычный Linux)
+  else
+    proxy_host="127.0.0.1"
+  fi
+
+  HTTP_PROXY="http://${proxy_host}:10809" \
+  HTTPS_PROXY="http://${proxy_host}:10809" \
+  ALL_PROXY="socks5://${proxy_host}:10808" \
   codex "$@"
 }
 
